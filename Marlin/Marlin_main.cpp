@@ -247,6 +247,12 @@
  * ************ Custom codes - This can change to suit future G-code regulations
  * M928 - Start SD logging: "M928 filename.gco". Stop with M29. (Requires SDSUPPORT)
  * M999 - Restart after being stopped by error
+ * M1200 - Head Blue LED On
+ * M1201 - Head Blue LED Off
+ * M1202 - Strip LED On
+ * M1203 - Strip LED Off
+ * M1614 - LED Strip State
+ * M1615 - Head Blue LED State
  *
  * "T" Codes
  *
@@ -12103,6 +12109,66 @@ inline void gcode_M999() {
   flush_and_request_resend();
 }
 
+/**
+ * M1200: Turn Head Blue LED On
+ *
+ */
+inline void gcode_M1200() {
+  digitalWrite(LED_blue, HIGH);
+  Top_Led_State = true;
+}
+
+/*
+ * M1201: Turn Head Blue LED Off
+ *
+ */
+inline void gcode_M1201() {
+  digitalWrite(LED_blue, LOW);
+  Top_Led_State = false;
+}
+
+/*
+ * M1202: Turn Left and Right LED Strips On
+ *
+ */
+inline void gcode_M1202() {
+  digitalWrite(LED_Strip_Left, HIGH);
+  digitalWrite(LED_Strip_Right, HIGH);
+  Strip_Led_State = true;
+}
+
+/*
+ * M1203: Turn Left and Right LED Strips Off
+ *
+ */
+inline void gcode_M1203() {
+  digitalWrite(LED_Strip_Left, LOW);
+  digitalWrite(LED_Strip_Right, LOW);
+  Strip_Led_State = false;
+}
+
+/*
+ * M1614: Get LED Strip State
+ *
+ */
+inline void gcode_M1614() {
+  if (Strip_Led_State == true)
+     SERIAL_PROTOCOL("1");
+  else
+     SERIAL_PROTOCOL("0");
+}
+
+/*
+ * M1615: Get Head Blue LED State
+ *
+ */
+inline void gcode_M1615() {
+  if (Top_Led_State == true)
+     SERIAL_PROTOCOL("1");
+  else
+     SERIAL_PROTOCOL("0");
+}
+
 #if DO_SWITCH_EXTRUDER
   #if EXTRUDERS > 3
     #define REQ_ANGLES 4
@@ -13105,6 +13171,18 @@ void process_parsed_command() {
 
       case 999: gcode_M999(); break;                              // M999: Restart after being Stopped
 
+      case 1200: gcode_M1200(); break;                            // M1200: Head Blue LED On
+    
+      case 1201: gcode_M1201(); break;                            // M1201: Head Blue LED Off
+                            
+      case 1202: gcode_M1202(); break;                            // M1202: LED Strip On
+                            
+      case 1203: gcode_M1203(); break;                            // M1203: LED Strip Off
+                            
+      case 1614: gcode_M1614(); break;                            // M1614: Get LED Strip State (0-Off or 1-On)
+                            
+      case 1615: gcode_M1615(); break;                            // M1615: Get Head Blue LED State (0-Off or 1-On)
+                            
       default: parser.unknown_command_error();
     }
     break;
