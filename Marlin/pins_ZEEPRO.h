@@ -230,7 +230,7 @@
 #define LED_Strip_Right      25
 
 #define Commande_Green	     42
-#define SUICIDE_Zim_PIN	     43
+#define SUICIDE_PIN	         43
 //#define ATMEL_IN_PUSH	     3
 
 //#define Endstop_voyage       31
