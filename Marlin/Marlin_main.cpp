@@ -15109,8 +15109,27 @@ void stop() {
  *    • Z probe sled
  *    • status LEDs
  */
+
+void setup_green_led() {
+   #if (Commande_Green> -1) 
+	SET_OUTPUT(Commande_Green);
+	WRITE(Commande_Green, HIGH);
+   #endif
+}
+
+void zeepro_custom_pins() {
+   // blue LED
+   pinMode(LED_blue, OUTPUT);
+   // right and left StripLed
+   pinMode(LED_Rampes_droite, OUTPUT);
+   pinMode(LED_Rampes_gauche, OUTPUT);
+}
+
 void setup() {
 
+  setup_green_led();
+  zeepro_custom_pins();  
+                        
   #if ENABLED(MAX7219_DEBUG)
     max7219.init();
   #endif
