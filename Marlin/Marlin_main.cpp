@@ -757,6 +757,9 @@ XYZ_CONSTS_FROM_CONFIG(float, max_length,     MAX_LENGTH);
 XYZ_CONSTS_FROM_CONFIG(float, home_bump_mm,   HOME_BUMP_MM);
 XYZ_CONSTS_FROM_CONFIG(signed char, home_dir, HOME_DIR);
 
+bool Strip_Led_State = false;
+bool Top_Led_State = false;
+
 /**
  * ***************************************************************************
  * ******************************** FUNCTIONS ********************************
