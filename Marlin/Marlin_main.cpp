@@ -15124,8 +15124,8 @@ void zeepro_custom_pins() {
    // blue LED
    pinMode(LED_blue, OUTPUT);
    // right and left StripLed
-   pinMode(LED_Rampes_droite, OUTPUT);
-   pinMode(LED_Rampes_gauche, OUTPUT);
+   pinMode(LED_Strip_Right, OUTPUT);
+   pinMode(LED_Strip_Left, OUTPUT);
 }
 
 void setup() {
