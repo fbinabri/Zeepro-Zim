@@ -56,16 +56,20 @@
   #define X_MAX_PIN         2
 #endif
 #define Y_MIN_PIN           4
-#define Y_MAX_PIN           5
+#ifndef Y_MAX_PIN
+  #define Y_MAX_PIN         5
+#endif
 #define Z_MIN_PIN           18
-#define Z_MAX_PIN           19
+#ifndef Z_MAX_PIN
+  #define Z_MAX_PIN         19
+#endif
 
 // ******************************************************************
 // Z Probe (when not Z_MIN_PIN uncomment below and choose a free pin)
 // ******************************************************************
-//#ifndef Z_MIN_PROBE_PIN
-//  #define Z_MIN_PROBE_PIN  32
-//#endif
+#ifndef Z_MIN_PROBE_PIN
+  #define Z_MIN_PROBE_PIN  6    //Bottom E0 connector pin# 5
+#endif
 
 //*******************************
 // Steppers
@@ -74,35 +78,35 @@
 #define X_DIR_PIN          55
 #define X_ENABLE_PIN       38
 #ifndef X_CS_PIN
-  #define X_CS_PIN         42
+  #define X_CS_PIN         42 //need to check correct pin when required
 #endif
 
 #define Y_STEP_PIN         60
 #define Y_DIR_PIN          61
 #define Y_ENABLE_PIN       56
 #ifndef Y_CS_PIN
-  #define Y_CS_PIN         43
+  #define Y_CS_PIN         43 //need to check correct pin when required
 #endif
 
 #define Z_STEP_PIN         46
 #define Z_DIR_PIN          48
 #define Z_ENABLE_PIN       62
 #ifndef Z_CS_PIN
-  #define Z_CS_PIN         40
+  #define Z_CS_PIN         40 //need to check correct pin when required
 #endif
 
 #define E0_STEP_PIN        36
 #define E0_DIR_PIN         34
 #define E0_ENABLE_PIN      30
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN        41
+  #define E0_CS_PIN        41 //need to check correct pin when required  
 #endif
 
 #define E1_STEP_PIN        26
 #define E1_DIR_PIN         28
 #define E1_ENABLE_PIN      24
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN        37
+  #define E1_CS_PIN        37 //need to check correct pin when required
 #endif
 
 /*******************************
@@ -191,7 +195,7 @@
 #define HEATER_0_PIN         10
 #define HEATER_1_PIN         9
 #define HEATER_BED_PIN       8
-#define FAN_PIN              45
+#define FAN_PIN              45 //extruder cold end fan
 
 //******************************
 // Misc Functions
@@ -199,7 +203,7 @@
 #define SDPOWER              -1
 #define SDSS                 53
 #define LED_PIN              13
-#define BEEPER_PIN           -1
+#define BEEPER_PIN           16 //bottom E0 connector pin# 9
 #define KILL_PIN             41
 
 #ifndef FILWIDTH_PIN
@@ -207,7 +211,7 @@
 #endif
 
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN     11
+  #define FIL_RUNOUT_PIN     11   //Bottom E1 connector pin# 5 
 #endif
 
 #ifndef PS_ON_PIN
@@ -219,8 +223,8 @@
 //*****************************
 //Filament Runout Sensors
 //*****************************
-#define PRIVATE_ENDSTOPS1    11
-#define PRIVATE_ENDSTOPS2    6
+//#define PRIVATE_ENDSTOPS1    11   
+//#define PRIVATE_ENDSTOPS2    6 
 
 //*****************************
 //Leds
@@ -230,8 +234,9 @@
 #define LED_Strip_Right      25
 
 #define Commande_Green	     42
-#define SUICIDE_PIN	         43
+#define SUICIDE_Zim_PIN	     43
 #define ATMEL_IN_PUSH	       3
+#define KILL_PIN             41
 
 //#define Endstop_voyage       31
 //#define Endstop_Z_Movement   32
